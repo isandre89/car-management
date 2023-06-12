@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<style>
+  .cell input {
+    width: 6rem;
+    border: none;
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 5px 8px;
+  }
+
+  .select {
+    vertical-align: middle;
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+<h1 class="text-center py-5">List of Cars</h1>
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <form class="col-md-9" method="post">
+      {% csrf_token %}
+      <div class="d-flex justify-content-between">
+        <a href="{% url 'update_cars' %}" class="btn btn-primary my-5 px-5"
+          >Cancel</a
+        >
+        <button
+          type="submit"
+          name="submit"
+          id="updateBtn"
+          class="btn btn-primary my-5 px-5"
+        >
+          Save
+        </button>
+      </div>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Model</th>
+            <th>Brand</th>
+            <th>Main Color</th>
+            <th>Value</th>
+            <th>Production Costs</th>
+            <th>Transportation Costs</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ formset.management_form }} {% for form in formset %}
+          <tr>
+            {{ form.id }}
+            <td class="cell">{{ form.model }}</td>
+            <td class="cell select">{{ form.brand }}</td>
+            <td class="cell select">{{ form.main_color }}</td>
+            <td class="cell">{{ form.value }}</td>
+            <td class="cell">{{ form.production_costs }}</td>
+            <td class="cell">{{ form.transportation_costs }}</td>
+            <td class="cell">
+              <input type="text" class="total-input" readonly />
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+
+<script src="{% static 'js/update.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <h1 class="text-center py-5">List of Cars</h1>
+  <div class="text-center">
+    <a href="{% url 'add_car' %}" class="btn btn-primary px-5">Add Car</a>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="col-md-9">
+      <div class="my-5">
+        <a href="{% url 'update_cars' %}" class="btn btn-primary px-5">Update</a>
+      </div>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>Model</th>
+            <th>Brand</th>
+            <th>Main Color</th>
+            <th>Value</th>
+            <th>Production Costs</th>
+            <th>Transportation Costs</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for car in cars %}
+          <tr>
+            <td>{{ car.model }}</td>
+            <td>{{ car.brand }}</td>
+            <td>{{ car.main_color }}</td>
+            <td>{{ car.value }}</td>
+            <td>{{ car.production_costs }}</td>
+            <td>{{ car.transportation_costs }}</td>
+            <td>{{ car.total }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

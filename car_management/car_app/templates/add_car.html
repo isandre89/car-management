@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% block content %}
+<h1 class="text-center py-5">Add Car</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <form method="post" class="col-md-6">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label for="id_model">Model</label>
+        <input type="text" name="model" id="id_model" class="form-control" maxlength="100" placeholder="Corolla" required />
+      </div>
+
+      <div class="form-group mt-4">
+        <label for="id_brand">Brand</label>
+        <select name="brand" id="id_brand" class="form-control" required>
+          <option value="" selected disabled>Select Brand</option>
+          {% for brand in brands %}
+          <option value="{{ brand.id }}">{{ brand.brand }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group mt-4">
+        <label for="id_main_color">Main Color</label>
+        <select name="main_color" id="id_main_color" class="form-control" required>
+          <option value="" selected disabled>Select Color</option>
+          {% for color in colors %}
+          <option value="{{ color.id }}">{{ color.color }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group mt-4">
+        <label for="id_value">Value</label>
+        <input type="number" name="value" id="id_value" class="form-control" placeholder="33000" required />
+      </div>
+
+      <div class="form-group mt-4">
+        <label for="id_production_costs">Production Costs</label>
+        <input type="number" name="production_costs" id="id_production_costs" placeholder="3500" class="form-control" required />
+      </div>
+
+      <div class="form-group mt-4">
+        <label for="id_transportation_costs">Transportation Costs</label>
+        <input type="number" name="transportation_costs" id="id_transportation_costs" placeholder="2700" class="form-control" required />
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary my-5 px-5">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
