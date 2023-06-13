@@ -25,9 +25,9 @@ Run the following command to build the docker image
 make build
 ```
 
-Run the following command to start the docker container and to run the migrations
-
 ## Usage
+
+Run the following command to start the docker container and to run the migrations
 
 ```bash
 make up-d
